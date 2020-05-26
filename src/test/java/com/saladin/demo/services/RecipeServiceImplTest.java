@@ -3,18 +3,17 @@ package com.saladin.demo.services;
 import com.saladin.demo.domains.Recipe;
 import com.saladin.demo.repositories.RecipeRepository;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.stubbing.Answer;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class RecipeServiceImplTest {
+public class RecipeServiceImplTest {
 
     RecipeServiceImpl recipeService;
 
@@ -30,12 +29,11 @@ class RecipeServiceImplTest {
 
     @Test
     public void getRecipes() throws Exception{
-
         Recipe recipe = new Recipe();
         HashSet recipesData = new HashSet();
         recipesData.add(recipe);
 
-        Mockito.when(recipeRepository.findAll()).then((Answer<?>) recipesData);
+        Mockito.when(recipeRepository.findAll()).thenReturn(recipesData);
 
         Set<Recipe> recipes = recipeService.getRecipes();
 
